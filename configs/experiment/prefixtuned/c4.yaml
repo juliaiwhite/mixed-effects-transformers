@@ -1,0 +1,33 @@
+# @package _global_
+defaults:
+  - override /mode: exp.yaml
+  - override /model: null
+  - override /datamodule: c4.yaml
+  - override /logger: null
+
+# name of the run determines folder name in logs
+# it's also accessed by loggers
+name: "prefixtuning"
+
+model:
+  _target_: src.models.prefixtuning.PrefixTuningModel
+  dataset: 'c4'
+  feature: 'site'
+  model: 'standard'
+  original_tokens: True
+  dropout: True
+  prefix_size: 10000
+  num_prefixes: 2
+  lr: 0.00001
+
+logger:
+  wandb:
+    _target_: pytorch_lightning.loggers.wandb.WandbLogger
+    project: "mixed-effects-transformers"
+    name: ${name}_${now:%Y-%m-%d_%H-%M-%S}
+    save_dir: "."
+    id: null
+    log_model: False
+    job_type: "train"
+    tags: ["prefixtuning", "c4", "site"]
+    

@@ -1,0 +1,4 @@
+_target_: src.models.prefixtuning.HierarchicalModel
+dataset: 'movie_dialogue'
+feature: 'genre'
+lr: 0.00001

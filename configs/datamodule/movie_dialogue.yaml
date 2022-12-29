@@ -1,0 +1,9 @@
+_target_: src.datamodules.datamodule.DataModule
+dataset: 'movie_dialogue'
+feature_value: null
+train_samples: null # per feature value
+dense_features: False
+insert_start_tok: False
+data_dir: ${data_dir} # data_dir is specified in config.yaml
+batch_size: 4
+pin_memory: False
